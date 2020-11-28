@@ -4,7 +4,7 @@ include("ClassConnection.php");
 
 class ClassProducts extends ClassConnection {
 
-    // Gerar JSON de uma requisição do banco
+    // Rota GET com todos os produtos
     public function showProducts()
     {
         $PFetch = $this->connectDB()->prepare("SELECT * FROM products");
