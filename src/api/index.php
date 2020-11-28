@@ -1,5 +1,5 @@
 <?php
 
-include("./ClassProducts.php");
-$Products = new Products();
+include("ClassProducts.php");
+$Products = new ClassProducts();
 $Products->showProducts();

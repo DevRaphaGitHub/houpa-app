@@ -7,7 +7,7 @@ class ClassProducts extends ClassConnection {
     // Gerar JSON de uma requisição do banco
     public function showProducts()
     {
-        $PFetch = $this->connectDB()->prepare("select * from products");
+        $PFetch = $this->connectDB()->prepare("SELECT * FROM products");
         $PFetch->execute();
 
         $J = []; // JSON
