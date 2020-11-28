@@ -1,0 +1,5 @@
+*{margin:0; box-sizing: border-box;}
+
+.TabelaProducts{float:left; width: 80%; margin: 30px 10%; text-align: center;}
+    .TabelaProducts thead tr:first-child{background: black; color: white; font-weight: bold;}
+    .TabelaProducts tbody tr:nth-child(2n){background: #CCC;}
