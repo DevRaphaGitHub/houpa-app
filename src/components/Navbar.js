@@ -1,5 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -106,6 +105,7 @@ const Navbar = () => {
         className={classes.appBar}
       >
         <Toolbar>
+          <div className={classes.grow} />
           <div className={classes.grow} />
           <Typography className={classes.logo}>
             <img src={logo} alt="logo" width="100px" />
