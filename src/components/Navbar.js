@@ -24,6 +24,9 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 
+// Logo
+import logo from '../assets/logo_white.png';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -31,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   appBar: {
+    width: '100%',
+    display: 'flex',
+    backgroundColor: '#9414f4',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -82,12 +88,22 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
   },
   input: {
+    maxWidth: 100,
+    display: 'flex',
     marginLeft: theme.spacing(1),
     flex: 1,
   },
   iconButton: {
     padding: 10,
-  }
+  },
+  logo: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  grow: {
+    flexGrow: 1,
+  },
 }));
 
 const Navbar = () => {
@@ -125,6 +141,11 @@ const Navbar = () => {
           <Typography variant="h6" noWrap>
             Menu
           </Typography>
+          <div className={classes.grow} />
+          <Typography className={classes.logo}>
+            <img src={logo} alt="logo" width="100px" />
+          </Typography>
+          <div className={classes.grow} />
           <IconButton className={classes.iconButton} edge="end" color="inherit" aria-label="search">
             <SearchIcon />
           </IconButton>
