@@ -1,12 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './styles.css';
+import Navbar from '../../components/Navbar';
 
 const Home = () => {
   return (
-    <div id="page-home">
-      <span>HOME</span>
-    </div>
+    <Navbar />
   );
 }
 
