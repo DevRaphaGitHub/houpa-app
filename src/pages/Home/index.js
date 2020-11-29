@@ -91,7 +91,7 @@ const Home = () => {
   };
 
   return (
-    <div className={classes.home}>
+    <div id="page-home" className={classes.home}>
       <Navbar />
         <Drawer
           className={classes.drawer}
@@ -151,7 +151,7 @@ const Home = () => {
             {products.map((product) => (
               <Card className={classes.card}>
                 <CardActionArea>
-                  <Checkbox 
+                  <Checkbox
                     className={classes.favorite}
                     icon={<FavoriteBorder />} 
                     checkedIcon={<Favorite />}
