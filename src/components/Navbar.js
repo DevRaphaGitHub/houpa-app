@@ -137,7 +137,7 @@ const Navbar = () => {
           <IconButton type="submit" className={classes.iconButton} color="inherit" aria-label="favorites">
             <FavoriteBorderIcon />
           </IconButton>
-          <IconButton color="primary" className={classes.iconButton} color="inherit" aria-label="shopping">
+          <IconButton className={classes.iconButton} color="inherit" aria-label="shopping">
             <ShoppingCartOutlinedIcon />
           </IconButton>
         </Toolbar>
