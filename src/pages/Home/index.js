@@ -24,6 +24,7 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 import Navbar from '../../components/Navbar';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -72,19 +73,36 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
+  const baseURL = "http://localhost/houpa-app/src/services/";
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState('');
 
   // Requisição para api PHP
   useEffect(() => {
-    fetch("http://localhost/houpa-app/src/api/")
+    fetch(baseURL, {
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
       .then(response => response.json())
-      .then(
-        (result) => {
-          setProducts(result);
-        }
-      )
+      .then((result) => {
+        setProducts(result);
+      },
+    )
   }, []);
+  // const getAllProducts = () => {
+  //   axios.get(baseURL)
+  //   .then(response=>{
+  //     setProducts(response.data);
+  //   }).catch(error=>{
+  //     console.log(error);
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   getAllProducts();
+  // }, []);
 
   const handleChange = (event) => {
     setCategory(event.target.value);
@@ -170,7 +188,11 @@ const Home = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button variant="outlined">COMPRAR</Button>
+                    <Link to="/produto" style={{textDecoration: 'none'}}>
+                      <Button variant="outlined">
+                        COMPRAR
+                      </Button>
+                    </Link>
                     <IconButton>
                       <ShoppingCartOutlinedIcon />
                     </IconButton>
