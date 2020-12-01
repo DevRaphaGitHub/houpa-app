@@ -2,6 +2,7 @@
   "name": "houpa-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost/houpa-app/src/services/",
   "dependencies": {
     "@material-ui/core": "^4.11.1",
     "@material-ui/icons": "^4.9.1",

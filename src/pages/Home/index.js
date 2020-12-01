@@ -25,6 +25,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 
 import Navbar from '../../components/Navbar';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const drawerWidth = 240;
 
@@ -74,35 +75,20 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const baseURL = "http://localhost/houpa-app/src/services/";
-  const [products, setProducts] = useState([]);
+  const [data, setData] = useState([]);
   const [category, setCategory] = useState('');
 
   // Requisição para api PHP
-  useEffect(() => {
-    fetch(baseURL, {
-      headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json'
-      }
-    })
-      .then(response => response.json())
-      .then((result) => {
-        setProducts(result);
-      },
-    )
-  }, []);
-  // const getAllProducts = () => {
-  //   axios.get(baseURL)
-  //   .then(response=>{
-  //     setProducts(response.data);
-  //   }).catch(error=>{
-  //     console.log(error);
-  //   });
-  // };
+  const getAllProducts = async() => {
+    await axios.get(baseURL)
+    .then(response => {
+      setData(response.data);
+    });
+  };
 
-  // useEffect(() => {
-  //   getAllProducts();
-  // }, []);
+  useEffect(() => {
+    getAllProducts();
+  }, []);
 
   const handleChange = (event) => {
     setCategory(event.target.value);
@@ -166,8 +152,10 @@ const Home = () => {
         <main>
           <Typography>
           <div className={classes.container}>
-            {products.map((product) => (
-              <Card className={classes.card}>
+            {data.map(product => (
+              <li>{product.name}</li>
+            ))};
+              <Card key={'product.id'} className={classes.card}>
                 <CardActionArea>
                   <Checkbox
                     className={classes.favorite}
@@ -176,15 +164,15 @@ const Home = () => {
                   />
                   <CardMedia
                     className={classes.media}
-                    image={product.photo}
-                    title={product.name}
+                    image={'product.photo'}
+                    title={'product.name'}
                   />
                   <CardContent>
                     <Typography align="center" gutterBottom variant="body2" component="h2">
-                      <span>{product.name}</span>
+                      <span>{'product.name'}</span>
                     </Typography>
                     <Typography align="center" gutterBottom variant="body2" component="h2">
-                      <span><b>R$ {product.price}</b></span>
+                      <span><b>R$ {'product.price'}</b></span>
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -199,7 +187,6 @@ const Home = () => {
                   </CardActions>
                 </CardActionArea>
               </Card>
-            ))}
           </div>
           </Typography>
         </main>
