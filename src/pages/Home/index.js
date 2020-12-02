@@ -74,13 +74,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
-  const baseURL = "http://localhost/houpa-app/src/services/";
+  const baseUrl = "http://localhost/houpa-app/src/services/";
   const [data, setData] = useState([]);
   const [category, setCategory] = useState('');
 
   // Requisição para api PHP
   const getAllProducts = async() => {
-    await axios.get(baseURL)
+    await axios.get(baseUrl)
     .then(response => {
       setData(response.data);
     });
@@ -152,10 +152,8 @@ const Home = () => {
         <main>
           <Typography>
           <div className={classes.container}>
-            {data.map(product => (
-              <li>{product.name}</li>
-            ))};
-              <Card key={'product.id'} className={classes.card}>
+            {data.map((product) => (
+              <Card key={product.id} className={classes.card}>
                 <CardActionArea>
                   <Checkbox
                     className={classes.favorite}
@@ -164,15 +162,15 @@ const Home = () => {
                   />
                   <CardMedia
                     className={classes.media}
-                    image={'product.photo'}
-                    title={'product.name'}
+                    image={product.photo}
+                    title={product.name}
                   />
                   <CardContent>
                     <Typography align="center" gutterBottom variant="body2" component="h2">
-                      <span>{'product.name'}</span>
+                      <span>{product.name}</span>
                     </Typography>
                     <Typography align="center" gutterBottom variant="body2" component="h2">
-                      <span><b>R$ {'product.price'}</b></span>
+                      <span><b>R$ {product.price}</b></span>
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -187,6 +185,7 @@ const Home = () => {
                   </CardActions>
                 </CardActionArea>
               </Card>
+            ))};
           </div>
           </Typography>
         </main>

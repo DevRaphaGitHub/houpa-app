@@ -20,7 +20,7 @@ function disconnect() {
     $GLOBALS['pdo'] = null;
 }
 
-function get($query){
+function mGet($query){
     try{
         connect();
         $result = $GLOBALS['pdo']->prepare($query);

@@ -9,14 +9,14 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['id'])){
         $query = "SELECT * FROM products WHERE id = ".$_GET['id'];
-        $result = get($query);
+        $result = mGet($query);
         echo json_encode($result->fetch(PDO::FETCH_ASSOC));
     } else {
         $query = "SELECT * FROM products";
-        $resultado = get($query);
+        $resultado = mGet($query);
         echo json_encode($resultado->fetchAll());
     }
-    header("HTTP/1.1 200 OK");
+    // header("HTTP/1.1 200 OK"); Já fornecido pelo Laragon
     exit();
 }
 
