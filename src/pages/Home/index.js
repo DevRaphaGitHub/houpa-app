@@ -79,7 +79,7 @@ const Home = () => {
   const [category, setCategory] = useState('');
 
   // Requisição para api PHP
-  const getAllProducts = async() => {
+  const getProducts = async() => {
     await axios.get(baseUrl)
     .then(response => {
       setData(response.data);
@@ -87,7 +87,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getAllProducts();
+    getProducts();
   }, []);
 
   const handleChange = (event) => {
@@ -174,7 +174,10 @@ const Home = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Link to="/produto" style={{textDecoration: 'none'}}>
+                    <Link to={{
+                      pathname: "/produto",
+                      search: `?q=${product.id}&limit=1`
+                    }} style={{textDecoration: 'none'}}>
                       <Button variant="outlined">
                         COMPRAR
                       </Button>
