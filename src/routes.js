@@ -7,7 +7,7 @@ import Product from './pages/Product';
 const Routes = () => {
   return (
     <BrowserRouter>
-      <Route component={Home} path="/" exact />
+      <Route exact component={Home} path="/" />
       <Route component={Product} path="/produto" />
     </BrowserRouter>
   );

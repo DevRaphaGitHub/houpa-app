@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -19,11 +17,11 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
-
+import axios from 'axios';
 import Navbar from '../../components/Navbar';
+import Home from '../Home/index';
 
 const drawerWidth = 240;
 
@@ -72,7 +70,22 @@ const useStyles = makeStyles((theme) => ({
 
 const Product = () => {
   const classes = useStyles();
+  const baseUrl = "http://localhost/houpa-app/src/services/";
   const [category, setCategory] = useState('');
+  const [product, setProduct] = useState({});
+  const location = useLocation();
+
+  // Requisição para api PHP por ID do produto
+  const getProductById = async() => {
+    await axios.get(baseUrl + `${location.search}`)
+    .then(response => {
+      setProduct(response.data);
+    });
+  };
+
+  useEffect(() => {
+    getProductById();
+  }, []);
 
   const handleChange = (event) => {
     setCategory(event.target.value);
@@ -136,7 +149,7 @@ const Product = () => {
         <main>
           <Typography>
           <div className={classes.container}>
-              <Card className={classes.card}>
+              <Card key={product.id} className={classes.card}>
                 <CardActionArea>
                   <Checkbox
                     className={classes.favorite}
@@ -145,23 +158,17 @@ const Product = () => {
                   />
                   <CardMedia
                     className={classes.media}
-                    image={'Foto'}
-                    title={'Nome'}
+                    image={product.photo}
+                    title={product.name}
                   />
                   <CardContent>
                     <Typography align="center" gutterBottom variant="body2" component="h2">
-                      <span>{'Nome'}</span>
+                      <span>{product.name}</span>
                     </Typography>
                     <Typography align="center" gutterBottom variant="body2" component="h2">
-                      <span><b>R$ {'Preço'}</b></span>
+                      <span><b>R$ {product.price}</b></span>
                     </Typography>
                   </CardContent>
-                  <CardActions>
-                    <Button variant="outlined">COMPRAR</Button>
-                    <IconButton>
-                      <ShoppingCartOutlinedIcon />
-                    </IconButton>
-                  </CardActions>
                 </CardActionArea>
               </Card>
           </div>
