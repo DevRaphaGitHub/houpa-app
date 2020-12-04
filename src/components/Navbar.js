@@ -111,11 +111,11 @@ const Navbar = () => {
             <img src={logo} alt="logo" width="100px" />
           </Typography>
           <div className={classes.grow} />
-          <IconButton className={classes.iconButton} edge="end" color="inherit" aria-label="search">
+          <IconButton className={classes.iconButton} edge="end" color="primary" aria-label="search">
             <SearchIcon />
           </IconButton>
           <InputBase
-            color="inherit"
+            color="primary"
             className={classes.input}
             placeholder="Pesquisar..."
             inputProps={{ 'aria-label': 'pesquisar' }}

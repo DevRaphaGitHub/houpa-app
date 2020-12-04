@@ -8,7 +8,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -18,6 +17,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -52,6 +52,12 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     right: 0,
     color: 'red',
+  },
+  shoppingcart: {
+    position: 'absolute',
+    top: 0,
+    right: 30,
+    color: 'blue',
   },
   drawer: {
     position: 'fixed',
@@ -157,7 +163,7 @@ const Home = () => {
           </List>
         </Drawer>
         <main>
-          <Typography>
+          <Typography component={'span'}>
           <div className={classes.container}>
             {data.map((product) => (
               <Card key={product.id} className={classes.card}>
@@ -166,6 +172,11 @@ const Home = () => {
                     className={classes.favorite}
                     icon={<FavoriteBorder />} 
                     checkedIcon={<Favorite />}
+                  />
+                  <Checkbox
+                    className={classes.shoppingcart}
+                    icon={<ShoppingCartOutlinedIcon />} 
+                    checkedIcon={<ShoppingCartIcon />}
                   />
                   <CardMedia
                     className={classes.media}
@@ -190,9 +201,6 @@ const Home = () => {
                     >
                       COMPRAR
                     </Link>
-                    <IconButton>
-                      <ShoppingCartOutlinedIcon />
-                    </IconButton>
                   </CardActions>
                 </CardActionArea>
               </Card>
