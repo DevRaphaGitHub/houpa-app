@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
-import axios from 'axios';
 import Navbar from '../../components/Navbar';
-import { Container } from '@material-ui/core';
+import api from '../../services/api';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,13 +20,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Product = () => {
   const classes = useStyles();
-  const baseUrl = "http://localhost/houpa-app/src/services/";
   const [product, setProduct] = useState({});
   const location = useLocation();
 
   // Requisição para api PHP por ID do produto
   const getProductById = async() => {
-    await axios.get(baseUrl + `${location.search}`)
+    await api.get(`${location.search}`)
     .then(response => {
       setProduct(response.data);
     });

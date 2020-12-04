@@ -24,7 +24,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 
 import Navbar from '../../components/Navbar';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../services/api';
 
 const drawerWidth = 240;
 
@@ -82,13 +82,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
-  const baseUrl = "http://localhost/houpa-app/src/services/";
   const [data, setData] = useState([]);
   const [category, setCategory] = useState('');
 
   // Requisição para api PHP
   const getProducts = async() => {
-    await axios.get(baseUrl)
+    await api.get("/")
     .then(response => {
       setData(response.data);
     });
