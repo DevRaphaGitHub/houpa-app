@@ -55,8 +55,8 @@ const useStyles = makeStyles((theme) => ({
   },
   shoppingcart: {
     position: 'absolute',
-    top: 0,
-    right: 30,
+    bottom: 0,
+    right: 0,
     color: 'blue',
   },
   drawer: {
