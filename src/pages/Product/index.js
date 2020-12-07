@@ -11,10 +11,20 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
+
+import { Link } from 'react-router-dom';
+
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import PinterestIcon from '@material-ui/icons/Pinterest';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 import Navbar from '../../components/Navbar';
 import api from '../../services/api';
-import { Paper } from '@material-ui/core';
+import { IconButton, Paper } from '@material-ui/core';
 
 const drawerWidth = 300;
 
@@ -27,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
   },
   drawer: {
     position: 'fixed',
-    zIndex: -1,
     width: drawerWidth,
     flexShrink: 0,
   },
@@ -62,6 +71,31 @@ const useStyles = makeStyles((theme) => ({
   subtitle: {
     marginBottom: 8,
   },
+  buttons: {
+    marginBottom: 5
+  },
+  inputCep: {
+    width: 100,
+    height: 20
+  },
+  btnCep: {
+    marginTop: 10,
+    marginLeft: 10,
+    width: 'auto',
+    height: 'auto'
+  },
+  socialBar: {
+    position: 'fixed',
+    bottom: 5
+  },
+  iconsSocial: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  iconsWh: {
+    width: 30,
+    height: 30
+  }
 }));
 
 const Product = () => {
@@ -104,20 +138,25 @@ const Product = () => {
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                   LOJA VENDEDORA
                 </Typography>
+
                 <Typography className={classes.subtitle} variant="body2" component="p">
                   {product.store}
                 </Typography>
+
                 <Divider variant="middle" />
                 <Typography className={classes.title} style={{marginTop: 8}} color="textSecondary" gutterBottom>
                   PRODUTO
                 </Typography>
+
                 <Typography className={classes.subtitle} variant="body2" component="p">
                   {product.name}
                 </Typography>
+
                 <Divider variant="middle" />
                 <Typography className={classes.title} style={{marginTop: 8}} color="textSecondary" gutterBottom>
                   DESCRIÇÃO
                 </Typography>
+
                 <Typography className={classes.subtitle} variant="body2" component="p">
                   {product.description}
                 </Typography>
@@ -179,6 +218,80 @@ const Product = () => {
               <option value={2}>2</option>
               <option value={3}>3</option>
             </Select>
+
+            <Typography style={{marginTop: 10, paddingRight: 10}}>
+              <Button 
+                className={classes.buttons} 
+                variant="contained" 
+                color="primary" 
+                disableElevation 
+                fullWidth
+              >
+                Comprar
+              </Button>
+
+              <Button
+                fullWidth
+                className={classes.buttons}
+                variant="contained"
+                color="secondary"
+                endIcon={<ShoppingCartOutlinedIcon />}
+              >
+                Adicionar ao carrinho
+              </Button>
+            </Typography>
+
+            <Typography className={classes.title} style={{marginTop: 10}} variant="h5" component="h2">
+              <b>Frete</b>
+            </Typography>
+
+            <Typography className={classes.title} color="textSecondary" gutterBottom>
+              Calcule o frete estimado para sua região
+            </Typography>
+
+            <Typography variant="body2" component="h2">
+              <TextField id="standard-basic" label="CEP" className={classes.inputCep} />
+              <Button
+                className={classes.btnCep}
+                variant="contained" 
+                color="primary" 
+                disableElevation
+              >
+                Calcular
+              </Button>
+              <br></br>
+              <Link to="" style={{textDecoration: 'none'}}>
+                Não sei meu CEP
+              </Link>
+            </Typography>
+            
+            <div className={classes.socialBar}>
+              <Typography className={classes.title} color="textSecondary" gutterBottom>
+                Compartilhar
+              </Typography>
+
+              <Typography className={classes.iconsSocial}>
+                <IconButton className={classes.iconsWh}>
+                  <WhatsAppIcon />
+                </IconButton>
+
+                <IconButton className={classes.iconsWh}>
+                  <PinterestIcon />
+                </IconButton>
+
+                <IconButton className={classes.iconsWh}>
+                  <InstagramIcon />
+                </IconButton>
+
+                <IconButton className={classes.iconsWh}>
+                  <FacebookIcon />
+                </IconButton>
+
+                <IconButton className={classes.iconsWh}>
+                  <LinkedInIcon />
+                </IconButton>
+              </Typography>
+            </div>
           </List>
         </Drawer>
     </div>

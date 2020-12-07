@@ -14,6 +14,7 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 
 // Logo
 import logo from '../assets/logo_white.png';
+import { Tooltip } from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -120,12 +121,16 @@ const Navbar = () => {
             placeholder="Pesquisar..."
             inputProps={{ 'aria-label': 'pesquisar' }}
           />
-          <IconButton type="submit" className={classes.iconButton} color="inherit" aria-label="favorites">
-            <FavoriteBorderIcon />
-          </IconButton>
-          <IconButton className={classes.iconButton} color="inherit" aria-label="shopping">
-            <ShoppingCartOutlinedIcon />
-          </IconButton>
+          <Tooltip title="Meus Favoritos">
+            <IconButton type="submit" className={classes.iconButton} color="inherit" aria-label="favorites">
+              <FavoriteBorderIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Meu Carrinho">
+            <IconButton className={classes.iconButton} color="inherit" aria-label="shopping">
+              <ShoppingCartOutlinedIcon />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
       <main>
