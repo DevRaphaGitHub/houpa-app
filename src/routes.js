@@ -8,7 +8,7 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <Route exact component={Home} path="/" />
-      <Route component={Product} path="/produto" />
+      <Route exact component={Product} path="/produto" />
     </BrowserRouter>
   );
 }
